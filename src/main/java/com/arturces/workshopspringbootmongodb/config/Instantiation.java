@@ -2,6 +2,7 @@ package com.arturces.workshopspringbootmongodb.config;
 
 import com.arturces.workshopspringbootmongodb.domain.Post;
 import com.arturces.workshopspringbootmongodb.domain.User;
+import com.arturces.workshopspringbootmongodb.dto.AuthorDTO;
 import com.arturces.workshopspringbootmongodb.repository.PostRepository;
 import com.arturces.workshopspringbootmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +35,12 @@ public class Instantiation implements CommandLineRunner {
         User maria = new User(null, "Maria Brown", "maria@gmail.com");
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
-
-        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para Bahia!", maria);
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Estou na Bahia!", maria );
-
+        
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para Bahia!", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Estou na Bahia!", new AuthorDTO(maria));
+
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
 }
