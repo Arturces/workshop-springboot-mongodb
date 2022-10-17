@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String name;
     private String email;
 
-    @DBRef (lazy = true)
+    @DBRef (lazy = true)//definindo no banco de dados que sera uma referencia, com carregamento da lista tardio, nao vim todos post no get
     private List<Post> posts = new ArrayList<>();
 
     public User() {
